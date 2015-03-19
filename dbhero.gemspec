@@ -7,17 +7,20 @@ require "dbhero/version"
 Gem::Specification.new do |s|
   s.name        = "dbhero"
   s.version     = Dbhero::VERSION
-  s.authors     = ["TODO: Your name"]
-  s.email       = ["TODO: Your email"]
-  s.homepage    = "TODO"
-  s.summary     = "TODO: Summary of Dbhero."
-  s.description = "TODO: Description of Dbhero."
+  s.authors     = ["Antônio Roberto Silva"]
+  s.email       = ["forevertonny@gmail.com"]
+  s.homepage    = "https://github.com/catarse/dbhero"
+  s.summary     = "Simple heroku dataclips report tool"
+  s.description = "Based on heroku dataclips feature, SQL -> Dataset"
   s.license     = "MIT"
 
   s.files = Dir["{app,config,db,lib}/**/*", "MIT-LICENSE", "Rakefile", "README.rdoc"]
   s.test_files = Dir["test/**/*"]
 
-  s.add_dependency "rails", "~> 4.1.9"
+  s.add_dependency "rails", ">= 4.1.9"
+  s.add_dependency "materialize-sass"
+  s.add_dependency "sass-rails"
+  s.add_dependency "slim-rails"
 
   s.add_development_dependency "pg"
 end

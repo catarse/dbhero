@@ -2,7 +2,6 @@ PATH
   remote: .
   specs:
     dbhero (0.0.1)
-      materialize-sass
       rails (>= 4.1.9)
       sass-rails
       slim-rails
@@ -46,7 +45,13 @@ GEM
       thread_safe (~> 0.3, >= 0.3.4)
       tzinfo (~> 1.1)
     arel (6.0.0)
+    binding_of_caller (0.7.2)
+      debug_inspector (>= 0.0.1)
     builder (3.2.2)
+    byebug (4.0.3)
+      columnize (= 0.9.0)
+    columnize (0.9.0)
+    debug_inspector (0.0.2)
     erubis (2.7.0)
     globalid (0.3.3)
       activesupport (>= 4.1.0)
@@ -57,8 +62,6 @@ GEM
       nokogiri (>= 1.5.9)
     mail (2.6.3)
       mime-types (>= 1.16, < 3)
-    materialize-sass (0.95.3.3)
-      sass (~> 3.3)
     mime-types (2.4.3)
     mini_portile (0.6.2)
     minitest (5.5.1)
@@ -110,6 +113,7 @@ GEM
       activesupport (>= 3.1, < 5.0)
       railties (>= 3.1, < 5.0)
       slim (~> 3.0)
+    spring (1.3.3)
     sprockets (2.12.3)
       hike (~> 1.2)
       multi_json (~> 1.0)
@@ -125,10 +129,18 @@ GEM
     tilt (1.4.1)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
+    web-console (2.1.2)
+      activemodel (>= 4.0)
+      binding_of_caller (>= 0.7.2)
+      railties (>= 4.0)
+      sprockets-rails (>= 2.0, < 4.0)
 
 PLATFORMS
   ruby
 
 DEPENDENCIES
+  byebug
   dbhero!
   pg
+  spring
+  web-console (~> 2.0)

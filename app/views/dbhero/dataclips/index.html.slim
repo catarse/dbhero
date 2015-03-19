@@ -1,0 +1,23 @@
+h1 Listing dataclips
+
+table
+  thead
+    tr
+      th Description
+      th Raw query
+      th
+      th
+      th
+
+  tbody
+    - @dataclips.each do |dataclip|
+      tr
+        td = dataclip.description
+        td = dataclip.raw_query
+        td = link_to 'Show', dataclip
+        td = link_to 'Edit', edit_dataclip_path(dataclip)
+        td = link_to 'Destroy', dataclip, data: {:confirm => 'Are you sure?'}, :method => :delete
+
+br
+
+= link_to 'New Dataclip', new_dataclip_path

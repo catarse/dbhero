@@ -1,0 +1,15 @@
+= form_for @dataclip do |f|
+  - if @dataclip.errors.any?
+    #error_explanation
+      h2 = "#{pluralize(@dataclip.errors.count, "error")} prohibited this dataclip from being saved:"
+      ul
+        - @dataclip.errors.full_messages.each do |message|
+          li = message
+
+  .field
+    = f.label :description
+    = f.text_area :description
+  .field
+    = f.label :raw_query
+    = f.text_area :raw_query
+  .actions = f.submit

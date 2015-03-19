@@ -1,0 +1,15 @@
+p#notice = notice
+
+p
+  strong Description:
+  = @dataclip.description
+p
+  strong Raw query:
+  = @dataclip.raw_query
+
+p
+  = @result.inspect
+
+= link_to 'Edit', edit_dataclip_path(@dataclip)
+'|
+= link_to 'Back', dataclips_path

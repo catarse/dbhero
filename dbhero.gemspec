@@ -22,4 +22,6 @@ Gem::Specification.new do |s|
   s.add_dependency "slim-rails"
 
   s.add_development_dependency "pg"
+  s.add_development_dependency "web-console", '~> 2.0'
+  s.add_development_dependency "byebug"
 end

@@ -12,10 +12,7 @@ module Dbhero
 
     # GET /dataclips/1
     def show
-      Dataclip.transaction do
-        @result = ActiveRecord::Base.connection.select_all("select sub.* from (#{@dataclip.raw_query}) sub limit 1000")
-        raise ActiveRecord::Rollback
-      end
+      @dataclip.query_result
     end
 
     # GET /dataclips/new
@@ -25,18 +22,19 @@ module Dbhero
 
     # GET /dataclips/1/edit
     def edit
+      @dataclip.check_query
     end
 
     # POST /dataclips
     def create
       @dataclip = Dataclip.create(dataclip_params)
-      respond_with @dataclip, notice: 'Dataclip was successfully created.'
+      respond_with @dataclip, location: edit_dataclip_path(@dataclip),notice: 'Dataclip was successfully created.'
     end
 
     # PATCH/PUT /dataclips/1
     def update
       @dataclip.update(dataclip_params)
-      respond_with @dataclip, notice: 'Dataclip was successfully updated.'
+      respond_with @dataclip, location: edit_dataclip_path(@dataclip), notice: 'Dataclip was successfully updated.'
     end
 
     # DELETE /dataclips/1

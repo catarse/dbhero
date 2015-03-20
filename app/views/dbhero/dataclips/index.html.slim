@@ -15,6 +15,6 @@ h2.center-align dataclips
         ul.collection
           - @dataclips.each do |dataclip|
             li.collection-item
-              =link_to dataclip.description, dataclip
+              = link_to dataclip.description, edit_dataclip_path(dataclip)
               span.right= distance_of_time_in_words(dataclip.updated_at, DateTime.now)
 

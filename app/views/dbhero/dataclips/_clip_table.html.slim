@@ -1,0 +1,13 @@
+.section
+  .row
+    .col.s12 style="overflow: auto;"
+      table.striped.bordered
+        thead.blue-grey.darken-3.white-text
+          tr
+            - @dataclip.q_result.columns.each do |column|
+              th= column
+        tbody
+          - @dataclip.q_result.rows.each do |row|
+            tr
+              - row.each do |value|
+                td style="min-width: 200px;"= value

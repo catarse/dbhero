@@ -1,20 +1,5 @@
-p#notice = notice
-
-.card= simple_format(@dataclip.description)
-
-table.striped.bordered
-  thead
-    tr
-      - @result.columns.each do |column|
-        th= column
-  tbody
-    - @result.rows.each do |row|
-      tr
-        - row.each do |value|
-          td= value
-
-
-= link_to 'Edit', edit_dataclip_path(@dataclip)
-'|
-= link_to 'Back', dataclips_path
-
+.container
+  .row
+    .col.s12.center-align
+      h5=simple_format(@dataclip.description)
+== render 'clip_table'

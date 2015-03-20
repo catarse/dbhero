@@ -1,15 +1,20 @@
 p#notice = notice
 
-p
-  strong Description:
-  = @dataclip.description
-p
-  strong Raw query:
-  = @dataclip.raw_query
+.card= simple_format(@dataclip.description)
 
-p
-  = @result.inspect
+table.striped.bordered
+  thead
+    tr
+      - @result.columns.each do |column|
+        th= column
+  tbody
+    - @result.rows.each do |row|
+      tr
+        - row.each do |value|
+          td= value
+
 
 = link_to 'Edit', edit_dataclip_path(@dataclip)
 '|
 = link_to 'Back', dataclips_path
+

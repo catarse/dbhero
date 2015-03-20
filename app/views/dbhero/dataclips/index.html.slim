@@ -1,23 +1,20 @@
-h1 Listing dataclips
+h2.center-align dataclips
 
-table
-  thead
-    tr
-      th Description
-      th Raw query
-      th
-      th
-      th
+.container
+  .section
+    .row
+      .input-field.col.s4
+        input#icon_prefix.validate type="text" /
+        label for="icon_prefix"  search
+        i.mdi-action-search.prefix
+        
+      .input-field.col.s6.offset-s2
+        = link_to 'create dataclip', new_dataclip_path, class: 'btn right'
+    .row
+      .col.s12
+        ul.collection
+          - @dataclips.each do |dataclip|
+            li.collection-item
+              =link_to dataclip.description, dataclip
+              span.right= distance_of_time_in_words(dataclip.updated_at, DateTime.now)
 
-  tbody
-    - @dataclips.each do |dataclip|
-      tr
-        td = dataclip.description
-        td = dataclip.raw_query
-        td = link_to 'Show', dataclip
-        td = link_to 'Edit', edit_dataclip_path(dataclip)
-        td = link_to 'Destroy', dataclip, data: {:confirm => 'Are you sure?'}, :method => :delete
-
-br
-
-= link_to 'New Dataclip', new_dataclip_path

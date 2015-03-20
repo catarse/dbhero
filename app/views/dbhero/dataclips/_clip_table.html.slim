@@ -1,5 +1,14 @@
 .section
   .row
+    .col.s12
+      a class='dropdown-button btn' href='#' data-activates='export-drop' Export
+
+      ul id='export-drop' class='dropdown-content'
+        li
+          = link_to 'csv', dataclip_path(@dataclip, format: 'csv')
+        li
+          a href="#!" google drive
+
     .col.s12 style="overflow: auto;"
       table.striped.bordered
         thead.blue-grey.darken-3.white-text

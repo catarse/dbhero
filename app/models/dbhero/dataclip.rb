@@ -28,5 +28,12 @@ module Dbhero
         raise ActiveRecord::Rollback
       end
     end
+
+    def csv_string
+      csv = ''
+      csv << "#{@q_result.columns.join(',')}\n"
+      @q_result.rows.each { |row| csv << "#{row.join(',')}\n" }
+      csv
+    end
   end
 end

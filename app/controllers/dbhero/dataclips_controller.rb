@@ -3,7 +3,7 @@ require_dependency "dbhero/application_controller"
 module Dbhero
   class DataclipsController < ApplicationController
     before_action :set_dataclip, only: [:show, :edit, :update, :destroy]
-    respond_to :html
+    respond_to :html, :csv
 
     # GET /dataclips
     def index
@@ -13,6 +13,13 @@ module Dbhero
     # GET /dataclips/1
     def show
       @dataclip.query_result
+
+      respond_to do |format|
+        format.html
+        format.csv do
+          send_data @dataclip.csv_string, type: Mime::CSV, disposition: "attachment; filename=#{@dataclip.token}.csv"
+        end
+      end
     end
 
     # GET /dataclips/new

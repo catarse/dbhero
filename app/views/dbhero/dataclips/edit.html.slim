@@ -1,8 +1,4 @@
-h1 Editing dataclip
+br/
+h5.center-align= "clip #{link_to(@dataclip.token, @dataclip)} / edit".html_safe
 
 == render 'form'
-
-= link_to 'Show', @dataclip
-'|
-= link_to 'Back', dataclips_path
-

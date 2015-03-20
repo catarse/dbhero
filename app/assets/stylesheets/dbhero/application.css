@@ -13,3 +13,8 @@
  *= require_tree .
  *= require_self
  */
+.editor-style {
+  height: 300px;
+  border: 1px solid #cfd8dc;
+  border-radius: 5px;
+}

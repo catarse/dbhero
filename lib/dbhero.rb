@@ -1,5 +1,6 @@
 require "dbhero/engine"
-require "dbhero/router_constraint"
+require "dbhero/configuration"
 
 module Dbhero
+  extend Configuration
 end

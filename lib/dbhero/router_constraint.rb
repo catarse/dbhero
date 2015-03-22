@@ -23,7 +23,7 @@ module Dbhero
     private
 
     def check_if_is_public_dataclip
-      if @request.path.match(/\/dataclips\/([\w\-]{36}+)$/)
+      if @request.path.match(/\/dataclips\/([\w\-]{36}+)(\.[\w]{1,6})?$/)
         return Dbhero::Dataclip.where(token: $1).exists?
       end
     end

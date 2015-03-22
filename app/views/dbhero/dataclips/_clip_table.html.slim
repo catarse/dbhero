@@ -7,7 +7,7 @@
         li
           = link_to 'csv', dataclip_path(@dataclip, format: 'csv')
         li
-          a href="#!" google drive
+          = link_to 'google drive', dataclip_path(@dataclip, export_gdrive: true)
 
     .col.s12 style="overflow: auto;"
       table.striped.bordered

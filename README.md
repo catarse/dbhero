@@ -1,4 +1,4 @@
-# DBHero
+# DBHero [![Code Climate](https://codeclimate.com/github/catarse/dbhero/badges/gpa.svg)](https://codeclimate.com/github/catarse/dbhero)
 
 DBHero is a webui to create fast datasets from your database.
 

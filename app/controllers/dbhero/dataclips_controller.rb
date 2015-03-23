@@ -14,30 +14,28 @@ module Dbhero
     end
 
     def drive
-      @dataclip = Dataclip.find_by(token: session.delete(:clip_token))
-      @dataclip.check_query
-      auth_google.code = params[:code]
-      auth_google.fetch_access_token!
-      session = GoogleDrive.login_with_oauth(auth_google.access_token)
-      file = session.upload_from_string("", "#{@dataclip.description} - #{@dataclip.token}_#{Time.now.to_i}", content_type: 'text/csv')
-      ws = file.worksheets[0]
-      ws[1,1] = "=importData('#{dataclip_url(@dataclip, format: 'csv')}')"
-      ws.save
-      redirect_to file.human_url
+      token = session.delete(:clip_token)
+
+      google_client.fetch_access_token!(params[:code])
+      google_client.options[:import_data_url] = dataclip_url(id: token, format: 'csv')
+      google_client.export_clip_by_token token
+
+      redirect_to dataclip_path(google_client.dataclip, gdrive_file_url: google_client.exported_file_url)
     end
 
     def show
       check_auth if @dataclip.private?
+
       @dataclip.query_result
 
       respond_to do |format|
         format.html do
           if params[:export_gdrive]
             session[:clip_token] = @dataclip.token
-
-            redirect_to auth_google.authorization_uri.to_s
+            redirect_to google_client.auth.authorization_uri.to_s
           end
         end
+
         format.csv do
           send_data @dataclip.csv_string, type: Mime::CSV, disposition: "attachment; filename=#{@dataclip.token}.csv"
         end
@@ -78,18 +76,8 @@ module Dbhero
         params.require(:dataclip).permit(:description, :raw_query, :private)
       end
 
-      def auth_google
-        @g_client ||= ::Google::APIClient.new
-        auth = @g_client.authorization
-        #auth.application_name = 'DBHero'
-        auth.client_id = ""
-        auth.client_secret = ""
-        auth.scope =
-          "https://www.googleapis.com/auth/drive " +
-          "https://spreadsheets.google.com/feeds/"
-
-        auth.redirect_uri = drive_dataclips_url
-        auth
+      def google_client
+        @g_client ||= Dbhero::GdriveExporter.new(redirect_uri: drive_dataclips_url)
       end
   end
 end

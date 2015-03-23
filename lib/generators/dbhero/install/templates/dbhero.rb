@@ -1,5 +1,4 @@
 Dbhero.configure do |config|
-  # Use authentication on private pages
   # if you are using devise you can keep the "authenticate_user!"
   config.authenticate = true
 

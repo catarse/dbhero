@@ -28,6 +28,10 @@ module Dbhero
       @q_result.present?
     end
 
+    def total_rows
+      @total_rows ||= @q_result.rows.length
+    end
+
     def query_result
       Dataclip.transaction do
         begin

@@ -22,7 +22,7 @@ $(function(){
         editor.getSession().setValue(textarea.val());
         editor.getSession().setTabSize(2);
         editor.getSession().setUseSoftTabs(true);
-        editor.getSession().setMode("ace/mode/sql");
+        editor.getSession().setMode("ace/mode/pgsql");
 
         textarea.closest('form').submit(function () {
             textarea.val(editor.getSession().getValue());

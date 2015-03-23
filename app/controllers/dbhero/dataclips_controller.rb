@@ -57,16 +57,26 @@ module Dbhero
       end
 
       def check_auth
-        if Dbhero.authenticate_method.present?
-          send(Dbhero.authenticate_method)
+        if Dbhero.authenticate
+          unless _current_user && call_custom_auth
+            raise ActionController::RoutingError.new('Forbidden')
+          end
         end
       end
 
       def user_representation
+        _current_user.send(Dbhero.user_representation) if _current_user
+      end
+
+      def _current_user
         if Dbhero.current_user_method.present?
-          user = send(Dbhero.current_user_method)
-          user.send(Dbhero.user_representation) if user
+          send(Dbhero.current_user_method)
         end
+      end
+
+      def call_custom_auth
+        cond = Dbhero.custom_user_auth_condition
+        cond.call(_current_user) if cond.present? && cond.is_a?(Proc)
       end
   end
 end

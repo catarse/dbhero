@@ -1,6 +1,12 @@
 .section
   .row
-    .col.s12
+    .col.s6.style-text-field
+      .input-field
+        i.tiny.mdi-social-share.prefix
+        input#icon_prefix.validate type="text" value=dataclip_url(@dataclip)
+        label for="icon_prefix" 
+          strong PUBLIC URL
+    .col.s6.right-align style="margin-top: 25px;"
       a class='dropdown-button btn' href='#' data-activates='export-drop' Export
 
       ul id='export-drop' class='dropdown-content'
@@ -8,6 +14,13 @@
           = link_to 'csv', dataclip_path(@dataclip, format: 'csv')
         li
           a href="#!" google drive
+        
+        /h5.center-align Public link
+        /.card-panel.center-align.yellow.lighten-5
+          span.blue-text.text-darken-2
+            = link_to dataclip_url(@dataclip), dataclip_url(@dataclip), target: '__blank'
+
+
 
     .col.s12 style="overflow: auto;"
       table.striped.bordered

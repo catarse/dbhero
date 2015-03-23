@@ -2,6 +2,8 @@ module Dbhero
   class Dataclip < ActiveRecord::Base
     before_validation :set_token
 
+    scope :ordered, -> { order(updated_at: :desc) }
+
     validates :description, :raw_query, :token, presence: true
     attr_reader :q_result
 
@@ -11,6 +13,10 @@ module Dbhero
 
     def to_param
       self.token
+    end
+
+    def title
+      description.split("\n")[0]
     end
 
     def check_query

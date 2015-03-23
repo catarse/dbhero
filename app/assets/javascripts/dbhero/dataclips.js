@@ -6,6 +6,7 @@ $(function(){
         console.log(textarea.height());
 
         var editDiv = $('<div>', {
+            id: "ace_editor",
             position: 'absolute',
             width: textarea.width(),
             height: textarea.height(),
@@ -19,6 +20,8 @@ $(function(){
 
         editor.getSession().setUseWrapMode(true);
         editor.getSession().setValue(textarea.val());
+        editor.getSession().setTabSize(2);
+        editor.getSession().setUseSoftTabs(true);
         editor.getSession().setMode("ace/mode/sql");
 
         textarea.closest('form').submit(function () {
@@ -27,7 +30,8 @@ $(function(){
 
         $('.ace_editor').css({'padding':'0'});
 
-        editor.setTheme("ace/theme/chrome");
+        editor.setTheme("ace/theme/xcode");
+        $(editDiv).css({ 'font-size': '15px' })
     }
 
     if($('textarea#dataclip_raw_query').length > 0){

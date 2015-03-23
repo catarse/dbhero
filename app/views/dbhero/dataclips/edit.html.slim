@@ -1,6 +1,6 @@
 .container
   == render 'form'
-- if @dataclip.valid? && @dataclip.check_query
+- if @dataclip.valid? && @dataclip.query_result
   .section
     .row
       == render 'clip_table'

@@ -28,7 +28,7 @@ module Dbhero
     end
 
     def edit
-      @dataclip.check_query
+      @dataclip.query_result
     end
 
     def create

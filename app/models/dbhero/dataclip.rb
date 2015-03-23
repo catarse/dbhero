@@ -23,11 +23,6 @@ module Dbhero
       description.split("\n")[1..-1].join("\n")
     end
 
-    def check_query
-      query_result
-      @q_result.present?
-    end
-
     def total_rows
       @total_rows ||= @q_result.rows.length
     end
@@ -44,6 +39,7 @@ module Dbhero
     end
 
     def csv_string
+      query_result
       csv = ''
       csv << "#{@q_result.columns.join(',')}\n"
       @q_result.rows.each { |row| csv << "#{row.join(',')}\n" }

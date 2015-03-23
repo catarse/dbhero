@@ -7,6 +7,8 @@ DBHero is a webui to create fast datasets from your database.
 
 ## installation
 
+#### under development !!!!
+
 include in your Gemfile: 
 
 ```ruby

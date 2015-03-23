@@ -21,6 +21,20 @@ RSpec.describe Dbhero::Dataclip, type: :model do
     end
   end
 
+  context ".ordered" do
+    before do
+      @clip_01 = create(:dataclip, updated_at: 2.days.ago )
+      @clip_02 = create(:dataclip, updated_at: 1.days.ago )
+      @clip_03 = create(:dataclip, updated_at: 4.days.ago )
+    end
+
+    subject { Dbhero::Dataclip.ordered }
+
+    it do
+      is_expected.to eq([@clip_02, @clip_01, @clip_03])
+    end
+  end
+
   context "#to_param" do
     let(:dataclip) { create(:dataclip) }
     subject { dataclip.to_param }

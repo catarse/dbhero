@@ -49,6 +49,14 @@ RSpec.describe Dbhero::Dataclip, type: :model do
     it { is_expected.to eq("bar,foo\nfoo,bar\n")}
   end
 
+  context "#total_rows" do
+    let(:dataclip) { create(:dataclip, raw_query: "select foo.nest from (select unnest(ARRAY[1,2,3]) as nest) foo") }
+    before { dataclip.query_result }
+    subject { dataclip.total_rows }
+
+    it { is_expected.to eq(3) }
+  end
+
   context "#query_result" do
     context "executes raw_query and return they result on q_result" do
       let(:dataclip) { create(:dataclip, raw_query: "select 'foo'::text as bar, 'bar'::text as foo") }

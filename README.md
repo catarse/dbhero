@@ -1,7 +1,8 @@
 # DBHero
 
 DBHero is a webui to create fast datasets from your database.
-[Imgur](http://i.imgur.com/k6pMWJ2.gifv)
+
+![Dbhero](http://i.imgur.com/k6pMWJ2.gif)
 
 
 ## installation

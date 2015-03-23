@@ -3,19 +3,17 @@
   "https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/theme-xcode.js"
 = form_for @dataclip do |f|
   - if @dataclip.errors.any?
-    .row
-      .col.s12
-        br/
-        br/
-        .card-panel.red.darken-3
-          .card-content.white-text
-            ul
-              - @dataclip.errors.full_messages.each do |message|
-                li = message
+    .section
+      .card-panel.deep-orange.darken-4
+        .card-content.white-text
+          ul
+            - @dataclip.errors.full_messages.each do |message|
+              li
+                i class='mdi-alert-error left'
+                = message
 
   .row.style-text-field
     .input-field
-      i class="mdi-editor-mode-edit prefix"
       = f.text_area :description, class: "materialize-textarea", placeholder: "describe this clip, first line should be title..."
   .row
     .input-field

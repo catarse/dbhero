@@ -18,8 +18,27 @@
   border-radius: 1px;
 }
 
+header {
+  border-bottom: 1px solid #cfd8dc;
+  .row {
+    margin-bottom: 0;
+  }
+}
+
+.bottom-bord {
+  border-bottom: 1px solid #cfd8dc;
+}
+.clip-title {
+  p {
+    margin-bottom: 5px;
+  }
+}
+
+.end {
+  margin-bottom: 0 !important;
+}
 header .btn-group {
-  margin-top: 20px;
+  margin-top: 15px;
 }
 
 header h1 {

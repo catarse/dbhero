@@ -20,7 +20,11 @@ module Dbhero
 
     def call_custom_auth
       cond = Dbhero.custom_user_auth_condition
-      cond.call(_current_user) if cond.present? && cond.is_a?(Proc)
+      if cond.present? && cond.is_a?(Proc)
+        cond.call(_current_user)
+      else
+        true
+      end
     end
   end
 end

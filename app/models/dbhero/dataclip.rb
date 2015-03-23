@@ -1,10 +1,10 @@
 module Dbhero
   class Dataclip < ActiveRecord::Base
-    before_validation :set_token
+    before_create :set_token
 
     scope :ordered, -> { order(updated_at: :desc) }
 
-    validates :description, :raw_query, :token, presence: true
+    validates :description, :raw_query, presence: true
     attr_reader :q_result
 
     def set_token

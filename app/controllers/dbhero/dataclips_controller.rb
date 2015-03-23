@@ -1,4 +1,5 @@
 require_dependency "dbhero/application_controller"
+require_dependency "responders"
 
 module Dbhero
   class DataclipsController < ApplicationController

@@ -1,0 +1,26 @@
+rvm:
+  - 2.2.1
+
+before_install:
+  - "gem install bundler"
+
+before_script:
+  - "psql -c 'create role dummy SUPERUSER LOGIN;' postgres"
+  - "psql -c 'create database dummy_test;' -U dummy postgres"
+  - "sh -e /etc/init.d/xvfb start"
+  - "bundle exec rake db:migrate"
+
+env:
+  - DISPLAY=:99.0
+
+script:
+  - "CODECLIMATE_REPO_TOKEN=aec79d1213800c67f8d422b25d7d7b1c341cc9ecdca6e8bf71879dc8c7f53b4b bundle exec rspec spec"
+
+addons:
+  code_climate:
+    repo_token: "aec79d1213800c67f8d422b25d7d7b1c341cc9ecdca6e8bf71879dc8c7f53b4b"
+
+branches:
+  only:
+    - master
+

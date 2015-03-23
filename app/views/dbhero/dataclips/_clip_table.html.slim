@@ -1,6 +1,12 @@
 .section
   .row
-    .col.s12
+    .col.s6.style-text-field
+      .input-field
+        i.tiny.mdi-social-share.prefix
+        input#icon_prefix.validate type="text" value=dataclip_url(@dataclip)
+        label for="icon_prefix" 
+          strong PUBLIC URL
+    .col.s6.right-align style="margin-top: 25px;"
       a class='dropdown-button btn' href='#' data-activates='export-drop' Export
 
       ul id='export-drop' class='dropdown-content'
@@ -10,8 +16,8 @@
           = link_to 'google drive', dataclip_path(@dataclip, export_gdrive: true)
 
     .col.s12 style="overflow: auto;"
-      table.striped.bordered
-        thead.blue-grey.darken-3.white-text
+      table.striped.bordered style="border: 1px solid #cfd8dc; border-radius: 5px;"
+        thead.grey.lighten-2
           tr
             - @dataclip.q_result.columns.each do |column|
               th= column

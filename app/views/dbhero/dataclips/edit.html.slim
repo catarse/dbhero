@@ -1,14 +1,6 @@
-== render 'form'
 .container
-  .section
-    .row
-      .col.s12
-        h5.center-align Public link
-        .card-panel.center-align.yellow.lighten-5
-          span.blue-text.text-darken-2
-            = link_to dataclip_url(@dataclip), dataclip_url(@dataclip), target: '__blank'
-
-- if @dataclip.valid? && @dataclip.check_query
+  == render 'form'
+- if @dataclip.valid? && @dataclip.q_result
   .section
     .row
       == render 'clip_table'

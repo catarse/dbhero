@@ -1,28 +1,32 @@
-= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/ace.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/mode-sql.js",
-  "https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/theme-chrome.js"
+= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/ace/1.1.8/ace.js"
+= form_for @dataclip do |f|
+  - if @dataclip.errors.any?
+    .section
+      .card-panel.deep-orange.darken-4
+        .card-content.white-text
+          ul
+            - @dataclip.errors.full_messages.each do |message|
+              li
+                i class='mdi-alert-error left'
+                = message
 
-.container
-  = form_for @dataclip do |f|
-    - if @dataclip.errors.any?
-      .row
-        .col.s12
-          br/
-          br/
-          .card-panel.red.darken-3
-            .card-content.white-text
-              ul
-                - @dataclip.errors.full_messages.each do |message|
-                  li = message
-  
-    .row
+  .row.style-text-field
+    .input-field
+      = f.text_area :description, class: "materialize-textarea", placeholder: "describe this clip, first line should be title..."
+  .row
+    .input-field
+      = f.text_area :raw_query, class: 'editor-style z-depth-1'
+  .row
+    .col.s5
       .input-field
-        = f.text_area :description, class: "materialize-textarea", placeholder: "Description here..."
-    .row
+        .switch
+          label
+            i style="margin-top: -20px; float: left" class="small mdi-action-lock-open tooltipped" data-position="right" data-delay="50" data-tooltip="Everyone with the public link can see the results"
+            = f.check_box :private
+            span.lever style='float: left;'
+            i style="margin-top: -20px; float: left" class="small mdi-action-lock-outline tooltipped" data-position="right" data-delay="50" data-tooltip="Only users that same role as you can see the clip"
+    .col.s7.right-align
       .input-field
-        = f.text_area :raw_query, class: 'editor-style'
-    .row
-      .input-field
-        button class="btn-large waves-effect waves-light right blue-grey darken-2" type="submit" name="action"
+        button class="btn waves-effect waves-light blue darken-3" type="submit" name="action"
           | Save
-          i class="mdi-content-send right"
+          i class="mdi-action-done-all left"

@@ -4,7 +4,7 @@ PATH
     dbhero (0.0.1)
       google_drive
       rails (>= 4.1.9)
-      responders (~> 2.0)
+      responders
       sass-rails
       slim-rails
 

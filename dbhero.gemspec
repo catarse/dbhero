@@ -18,6 +18,7 @@ Gem::Specification.new do |s|
   s.test_files = Dir["spec/**/*"]
 
   s.add_dependency "rails", ">= 4.1.9"
+  s.add_dependency "responders"
   s.add_dependency "sass-rails"
   s.add_dependency "slim-rails"
   s.add_dependency "google_drive"

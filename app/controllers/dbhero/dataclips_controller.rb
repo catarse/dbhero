@@ -31,7 +31,7 @@ module Dbhero
     end
 
     def create
-      @dataclip = Dataclip.create(dataclip_params)
+      @dataclip = Dataclip.create(dataclip_params.merge(user: user_representation))
       respond_with @dataclip, location: edit_dataclip_path(@dataclip),notice: 'Dataclip was successfully created.'
     end
 
@@ -53,7 +53,7 @@ module Dbhero
 
       # Only allow a trusted parameter "white list" through.
       def dataclip_params
-        params.require(:dataclip).permit(:description, :raw_query)
+        params.require(:dataclip).permit(:description, :raw_query, :private)
       end
 
       def check_auth

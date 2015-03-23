@@ -6,18 +6,19 @@ html.grey.lighten-3
     = javascript_include_tag "dbhero/application", "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"
     = csrf_meta_tags
   body
-    header.grey.lighten-5.z-depth-1
-      .row
-        .col.s2
-          = link_to dataclips_path do
-            h1 
-              | db
-              strong hero
-        .col.s10.right-align
-          .btn-group
-            = link_to 'clips', dataclips_path, class: 'btn blue darken-1 waves-effect waves-light'
-            |&nbsp;
-            = link_to 'new clip', new_dataclip_path, class: 'btn blue darken-1 waves-effect waves-light'
-        
+    - unless action_name == 'show'
+      header.grey.lighten-5.z-depth-1
+        .row
+          .col.s2
+            = link_to dataclips_path do
+              h1 
+                | db
+                strong hero
+          .col.s10.right-align
+            .btn-group
+              = link_to 'clips', dataclips_path, class: 'btn blue darken-1 waves-effect waves-light'
+              |&nbsp;
+              = link_to 'new clip', new_dataclip_path, class: 'btn blue darken-1 waves-effect waves-light'
+          
     = yield
 

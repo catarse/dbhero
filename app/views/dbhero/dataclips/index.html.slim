@@ -2,10 +2,11 @@
   .section
     .row.style-text-field 
       .input-field.col.s12
-        input#icon_prefix.validate type="text" /
-        label for="icon_prefix" 
-          | search on all clips
-        i.mdi-action-search.prefix
+        = form_tag dataclips_path, method: :get do
+          input#icon_prefix.validate name='search' type="text" value=params[:search] /
+          label for="icon_prefix" 
+            | search on all clips
+          i.mdi-action-search.prefix
         
     .row
       .col.s2.center-align.right

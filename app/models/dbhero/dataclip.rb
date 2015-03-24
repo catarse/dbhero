@@ -3,6 +3,7 @@ module Dbhero
     before_create :set_token
 
     scope :ordered, -> { order(updated_at: :desc) }
+    scope :search, ->(term) { where(arel_table[:description].matches("%#{term}%")) }
 
     validates :description, :raw_query, presence: true
     attr_reader :q_result

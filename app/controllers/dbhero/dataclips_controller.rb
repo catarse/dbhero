@@ -7,10 +7,11 @@ module Dbhero
   class DataclipsController < ApplicationController
     before_action :check_auth, except: [:show]
     before_action :set_dataclip, only: [:show, :edit, :update, :destroy]
+    has_scope :search
     respond_to :html, :csv
 
     def index
-      @dataclips = Dataclip.ordered
+      @dataclips = apply_scopes(Dataclip.ordered)
     end
 
     def drive

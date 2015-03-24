@@ -16,7 +16,7 @@ tested stack:
 include in your Gemfile: 
 
 ```ruby
-gem 'dbhero', '~> 1.0.0'
+gem 'dbhero'
 ```
 
 then run:

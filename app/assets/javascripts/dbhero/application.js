@@ -26,4 +26,20 @@ $(function(){
     }
   );
 
+  try {
+    var $table = $('table#clip_table')
+
+    $table.dataTable({
+      scrollX: true,
+      searching: false,
+      lengthChange: false,
+      pagingType: 'simple'
+    });
+
+    //$table.floatThead({
+    //  scrollingTop: 'pageTop',
+    //});
+  } catch(e) {
+    console.log(e);
+  }
 });

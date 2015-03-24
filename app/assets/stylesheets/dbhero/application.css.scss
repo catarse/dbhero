@@ -24,6 +24,9 @@ header {
     margin-bottom: 0;
   }
 }
+.dataTables_scrollBody {
+  overflow-y: hidden !important;
+}
 
 .bottom-bord {
   border-bottom: 1px solid #cfd8dc;

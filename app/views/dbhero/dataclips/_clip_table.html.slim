@@ -1,11 +1,21 @@
+= stylesheet_link_tag "//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css"
+= javascript_include_tag "//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"
+= javascript_include_tag "//cdnjs.cloudflare.com/ajax/libs/floatthead/1.2.10/jquery.floatThead.min.js"
+
+- show_public_link = defined?(show_public_link) ? show_public_link : false
 .section
   .row
     .col.s6.style-text-field
-      .input-field
-        i.tiny.mdi-social-share.prefix
-        input#icon_prefix.validate type="text" value=dataclip_url(@dataclip)
-        label for="icon_prefix" 
-          strong PUBLIC URL
+      - if show_public_link
+        .input-field
+          i.tiny.mdi-social-share.prefix
+          input#icon_prefix.validate type="text" value=dataclip_url(@dataclip)
+          label for="icon_prefix" 
+            strong PUBLIC URL
+      - else
+        p style="margin-top: 40px; margin-bottom: 0;"
+          | total rows returned&nbsp;
+          strong= @dataclip.total_rows
     .col.s6.right-align style="margin-top: 25px;"
       a class='dropdown-button btn' href='#' data-activates='export-drop' Export
 
@@ -16,7 +26,7 @@
           = link_to 'google drive', dataclip_path(@dataclip, export_gdrive: true)
 
     .col.s12 style="overflow: auto;"
-      table.striped.bordered style="border: 1px solid #cfd8dc; border-radius: 5px;"
+      table#clip_table.cell-border.striped data-page-length='300'
         thead.grey.lighten-2
           tr
             - @dataclip.q_result.columns.each do |column|

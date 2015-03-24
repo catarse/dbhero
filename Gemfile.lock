@@ -1,10 +1,10 @@
 PATH
   remote: .
   specs:
-    dbhero (0.0.1)
+    dbhero (1.0.0)
       google_drive
       has_scope
-      rails (>= 4.1.9)
+      rails (>= 4.1)
       responders
       sass-rails
       slim-rails

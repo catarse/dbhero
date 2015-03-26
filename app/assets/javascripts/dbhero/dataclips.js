@@ -2,7 +2,7 @@ $(function(){
   Dbhero.Dataclips.LoadDatatable = function() {
     if($('.dataTables_wrapper').length < 1) {
       try {
-        $table = $('table#clip_table');
+        var $table = $('table#clip_table');
 
         $table.dataTable({
           scrollX: true,
@@ -15,11 +15,12 @@ $(function(){
         console.log(e);
       }
     }
-  }
+  };
+
   Dbhero.Dataclips.Editor = {
     render: function() {
       this.textarea = $('textarea#dataclip_raw_query');
-      this.buildAndInsertEditor()
+      this.buildAndInsertEditor();
 
       try {
         this.textarea.css('display', 'none');
@@ -43,8 +44,8 @@ $(function(){
         position: 'absolute',
         width: this.textarea.width(),
         height: this.textarea.height(),
-        'class': this.textarea.attr('class')
-      })
+        class: this.textarea.attr('class')
+      });
 
       this.editor.insertBefore(this.textarea);
       this.editor.css({ 'font-size': '15px' })
@@ -65,7 +66,7 @@ $(function(){
 
       return this;
     }
-  }
+  };
 
   if($('textarea#dataclip_raw_query').length > 0){
     Dbhero.Dataclips.Editor.render();

@@ -2,9 +2,17 @@ doctype html
 html.grey.lighten-3
   head
     title DBHero
-    = stylesheet_link_tag    "dbhero/application", "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css", media: "all"
-    = javascript_include_tag "dbhero/application", "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js"
-    = csrf_meta_tags
+
+  = stylesheet_link_tag    "dbhero/application", 
+    "//cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/css/materialize.min.css", 
+    "//cdn.datatables.net/1.10.5/css/jquery.dataTables.min.css",
+    media: "all"
+
+  = javascript_include_tag "dbhero/application",
+    "https://cdnjs.cloudflare.com/ajax/libs/materialize/0.95.3/js/materialize.min.js",
+    "//cdn.datatables.net/1.10.5/js/jquery.dataTables.min.js"
+
+  = csrf_meta_tags
   body
     - unless action_name == 'show'
       header.grey.lighten-5

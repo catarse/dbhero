@@ -13,7 +13,7 @@ module Dbhero
     end
 
     def _current_user
-      if Dbhero.current_user_method.present?
+      if Dbhero.authenticate && Dbhero.current_user_method.present?
         send(Dbhero.current_user_method)
       end
     end

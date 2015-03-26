@@ -40,7 +40,7 @@ module Dbhero
       spreadsheet = @session.spreadsheet_by_title(file_title)
 
       worksheet = (spreadsheet || upload_from_string(file_title)).worksheets[0]
-      worksheet[1,1] = "=importData('#{@options[:import_data_url]}')"
+      worksheet[1,1] = "=importData(\"#{@options[:import_data_url]}\")"
       worksheet.save
 
       spreadsheet || @uploaded_file
@@ -48,7 +48,7 @@ module Dbhero
 
     def upload_from_string file_title
       @uploaded_file ||= @session.upload_from_string(
-        @dataclip.csv_string,
+        "",
         file_title,
         content_type: 'text/csv')
     end

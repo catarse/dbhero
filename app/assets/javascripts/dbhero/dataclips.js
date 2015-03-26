@@ -1,4 +1,21 @@
 $(function(){
+  Dbhero.Dataclips.LoadDatatable = function() {
+    if($('.dataTables_wrapper').length < 1) {
+      try {
+        $table = $('table#clip_table');
+
+        $table.dataTable({
+          scrollX: true,
+          searching: false,
+          lengthChange: false,
+          pagingType: 'simple'
+        });
+
+      } catch(e) {
+        console.log(e);
+      }
+    }
+  }
   Dbhero.Dataclips.Editor = {
     render: function() {
       this.textarea = $('textarea#dataclip_raw_query');
@@ -52,6 +69,14 @@ $(function(){
 
   if($('textarea#dataclip_raw_query').length > 0){
     Dbhero.Dataclips.Editor.render();
+  }
+
+  if($('.fetch-remote-clip-table').length > 0){
+    var $fetchremote = $('.fetch-remote-clip-table');
+    $.get($fetchremote.data('path'), function(response) {
+      $fetchremote.html(response);
+      Dbhero.Dataclips.LoadDatatable();
+    });
   }
 });
 

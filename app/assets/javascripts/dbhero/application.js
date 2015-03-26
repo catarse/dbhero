@@ -30,17 +30,5 @@ $(function(){
     }
   );
 
-  try {
-    var $table = $('table#clip_table')
-
-    $table.dataTable({
-      scrollX: true,
-      searching: false,
-      lengthChange: false,
-      pagingType: 'simple'
-    });
-
-  } catch(e) {
-    console.log(e);
-  }
+  Dbhero.Dataclips.LoadDatatable();
 });

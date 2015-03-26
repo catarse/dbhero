@@ -27,11 +27,12 @@ module Dbhero
 
     def show
       check_auth if @dataclip.private?
-
       @dataclip.query_result
 
       respond_to do |format|
         format.html do
+          return render :show, layout: false if request.xhr?
+
           if params[:export_gdrive]
             session[:clip_token] = @dataclip.token
             redirect_to google_client.auth.authorization_uri.to_s

@@ -13,6 +13,10 @@
 //= require jquery
 //= require_tree .
 
+var Dbhero = {
+  Dataclips: {}
+};
+
 $(function(){
 
   $('.dropdown-button').dropdown({
@@ -36,9 +40,6 @@ $(function(){
       pagingType: 'simple'
     });
 
-    //$table.floatThead({
-    //  scrollingTop: 'pageTop',
-    //});
   } catch(e) {
     console.log(e);
   }

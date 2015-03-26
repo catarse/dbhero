@@ -1,42 +1,57 @@
 $(function(){
+  Dbhero.Dataclips.Editor = {
+    render: function() {
+      this.textarea = $('textarea#dataclip_raw_query');
+      this.buildAndInsertEditor()
 
-    startAce = function() {
-        var textarea = $('textarea#dataclip_raw_query');
-        console.log(textarea.width());
-        console.log(textarea.height());
-
-        var editDiv = $('<div>', {
-            id: "ace_editor",
-            position: 'absolute',
-            width: textarea.width(),
-            height: textarea.height(),
-            'class': textarea.attr('class')
-        }).insertBefore(textarea);
-
-        textarea.css('display', 'none');
-
-        var editor = ace.edit(editDiv[0]);
-        editor.renderer.setShowGutter(true);
-
-        editor.getSession().setUseWrapMode(true);
-        editor.getSession().setValue(textarea.val());
-        editor.getSession().setTabSize(2);
-        editor.getSession().setUseSoftTabs(true);
-        editor.getSession().setMode("ace/mode/pgsql");
-
-        textarea.closest('form').submit(function () {
-            textarea.val(editor.getSession().getValue());
-        });
+      try {
+        this.textarea.css('display', 'none');
+        this.startAce();
 
         $('.ace_editor').css({'padding':'0'});
+      } catch(e) {
+        console.log(e);
+        this.textarea.css('display', 'block');
+      }
 
-        editor.setTheme("ace/theme/xcode");
-        $(editDiv).css({ 'font-size': '15px' })
+      var that = this;
+      this.textarea.closest('form').submit(function () {
+        that.textarea.val(that.ace_editor.getSession().getValue());
+      });
+    },
+
+    buildAndInsertEditor: function() {
+      this.editor = $('<div>', {
+        id: "ace_editor",
+        position: 'absolute',
+        width: this.textarea.width(),
+        height: this.textarea.height(),
+        'class': this.textarea.attr('class')
+      })
+
+      this.editor.insertBefore(this.textarea);
+      this.editor.css({ 'font-size': '15px' })
+
+      return this;
+    },
+
+    startAce: function() {
+      this.ace_editor = ace.edit(this.editor[0]);
+      this.ace_editor.renderer.setShowGutter(true);
+
+      this.ace_editor.getSession().setUseWrapMode(true);
+      this.ace_editor.getSession().setValue(this.textarea.val());
+      this.ace_editor.getSession().setTabSize(2);
+      this.ace_editor.getSession().setUseSoftTabs(true);
+      this.ace_editor.getSession().setMode("ace/mode/pgsql");
+      this.ace_editor.setTheme("ace/theme/xcode");
+
+      return this;
     }
+  }
 
-    if($('textarea#dataclip_raw_query').length > 0){
-      startAce();
-    }
-
+  if($('textarea#dataclip_raw_query').length > 0){
+    Dbhero.Dataclips.Editor.render();
+  }
 });
 

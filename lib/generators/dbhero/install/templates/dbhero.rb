@@ -1,4 +1,9 @@
 Dbhero.configure do |config|
+  # max rows to show, if the number of rows on query result is greater of
+  # configuration then should display a button to download csv
+  # default value: 10000
+  # config.max_rows_limit = 10_000
+
   # if you are using devise you can keep the "authenticate_user!"
   config.authenticate = true
 

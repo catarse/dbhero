@@ -1,7 +1,7 @@
 module Dbhero
   module Configuration
     VALID_CONFIG_KEYS    = [:authenticate, :current_user_method, :custom_user_auth_condition,
-                            :user_representation, :google_api_id, :google_api_secret].freeze
+                            :user_representation, :google_api_id, :google_api_secret, :max_rows_limit].freeze
 
     DEFAULT_AUTHENTICATE = true
     DEFAULT_CURRENT_USER_METHOD = :current_user
@@ -9,6 +9,7 @@ module Dbhero
     DEFAULT_GOOGLE_API_SECRET = ''
     DEFAULT_USER_PRESENTATION = :email
     DEFAULT_CUSTOM_USER_AUTH_CONDITION = nil
+    DEFAULT_MAX_ROWS_LIMIT = 10_000
 
     attr_accessor *VALID_CONFIG_KEYS
 
@@ -31,6 +32,7 @@ module Dbhero
       self.google_api_id = DEFAULT_GOOGLE_API_ID
       self.google_api_secret = DEFAULT_GOOGLE_API_SECRET
       self.custom_user_auth_condition = DEFAULT_CUSTOM_USER_AUTH_CONDITION
+      self.max_rows_limit = DEFAULT_MAX_ROWS_LIMIT
     end
 
   end

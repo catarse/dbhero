@@ -39,6 +39,10 @@ On initializer ```config/initializers/dbhero.rb``` we can add the following conf
 
 ```ruby
 Dbhero.configure do |config|
+  # limits the total of rows that show on clips, if clip result os greather
+  # that result rows of query then should show a button to download csv
+  # this prevent that browser crashes :)
+  config.max_rows_limit = 10_000
   # if you are using devise you can keep the "authenticate_user!"
   config.authenticate = true
 

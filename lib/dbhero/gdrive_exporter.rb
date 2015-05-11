@@ -37,9 +37,7 @@ module Dbhero
     def find_or_create_spreadsheet!
       file_title = "DBHero - #{@dataclip.title}"
 
-      spreadsheet = @session.spreadsheet_by_title(file_title)
-
-      worksheet = (spreadsheet || upload_from_string(file_title)).worksheets[0]
+      worksheet = upload_from_string(file_title).worksheets[0]
       worksheet[1,1] = "=importData(\"#{@options[:import_data_url]}\")"
       worksheet.save
 

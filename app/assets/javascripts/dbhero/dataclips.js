@@ -92,5 +92,6 @@ $(function(){
       loadDropdown();
     });
   }
+  loadDropdown();
 });
 

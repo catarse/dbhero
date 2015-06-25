@@ -5,6 +5,7 @@ $(function(){
         var $table = $('table#clip_table');
 
         $table.dataTable({
+          aaSorting: [],
           scrollX: true,
           searching: false,
           lengthChange: false,

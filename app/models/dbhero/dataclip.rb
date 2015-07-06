@@ -1,3 +1,5 @@
+require 'csv'
+
 module Dbhero
   class Dataclip < ActiveRecord::Base
     before_create :set_token
@@ -41,10 +43,11 @@ module Dbhero
 
     def csv_string
       query_result
-      csv = ''
-      csv << "#{@q_result.columns.join(',')}\n"
-      @q_result.rows.each { |row| csv << "#{row.join(',')}\n" }
-      csv
+      csv_string = CSV.generate(force_quotes: true) do |csv|
+        csv << @q_result.columns
+        @q_result.rows.each { |row| csv << row }
+      end
+      csv_string
     end
   end
 end

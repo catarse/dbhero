@@ -229,6 +229,3 @@ DEPENDENCIES
   pg
   rspec-rails (~> 3.0)
   shoulda
-
-BUNDLED WITH
-   1.10.3

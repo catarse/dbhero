@@ -60,7 +60,7 @@ RSpec.describe Dbhero::Dataclip, type: :model do
     let(:dataclip) { create(:dataclip, raw_query: "select 'foo'::text as bar, 'bar'::text as foo") }
     subject { dataclip.csv_string }
 
-    it { is_expected.to eq("bar,foo\nfoo,bar\n")}
+    it { is_expected.to eq(%{"bar","foo"\n"foo","bar"\n})}
   end
 
   context "#total_rows" do

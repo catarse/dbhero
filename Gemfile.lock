@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dbhero (1.1.7)
+    dbhero (1.1.8)
       google_drive
       has_scope
       rails (>= 4.1)

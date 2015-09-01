@@ -3,7 +3,7 @@
 DBHero is a simple and elegant web interface to extract data clips from your app database. just plug and play ;)
 
 tested stack:
-- PostgresSQL
+- PostgreSQL and MySQL
 - Ruby 2+
 - Rails 4.1+
 

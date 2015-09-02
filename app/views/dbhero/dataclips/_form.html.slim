@@ -12,10 +12,10 @@
 
   .row.style-text-field
     .input-field
-      = f.text_area :description, class: "materialize-textarea", placeholder: "describe this clip, first line should be title..."
+      = f.text_area :description, class: "materialize-textarea", placeholder: "describe this clip, first line should be title...", required: "true"
   .row
     .input-field
-      = f.text_area :raw_query, class: 'editor-style z-depth-1'
+      = f.text_area :raw_query, class: 'editor-style z-depth-1', required: "true"
   .row
     .col.s5
       .input-field

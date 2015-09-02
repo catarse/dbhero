@@ -3,7 +3,7 @@ module Dbhero
     def check_auth
       if Dbhero.authenticate
         unless _current_user && call_custom_auth
-          redirect_to new_user_session_path
+          redirect_to '/users/sign_in'
         end
       end
     end

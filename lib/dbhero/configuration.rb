@@ -1,6 +1,6 @@
 module Dbhero
   module Configuration
-    VALID_CONFIG_KEYS    = [:authenticate, :current_user_method, :custom_user_auth_condition,
+    VALID_CONFIG_KEYS    = [:authenticate, :current_user_method, :custom_user_auth_condition, :csv_delimiter,
                             :user_representation, :google_api_id, :google_api_secret, :max_rows_limit].freeze
 
     DEFAULT_AUTHENTICATE = true
@@ -10,6 +10,7 @@ module Dbhero
     DEFAULT_USER_PRESENTATION = :email
     DEFAULT_CUSTOM_USER_AUTH_CONDITION = nil
     DEFAULT_MAX_ROWS_LIMIT = 10_000
+    DEFAULT_CSV_DELIMITER = ','
 
     attr_accessor *VALID_CONFIG_KEYS
 
@@ -33,6 +34,7 @@ module Dbhero
       self.google_api_secret = DEFAULT_GOOGLE_API_SECRET
       self.custom_user_auth_condition = DEFAULT_CUSTOM_USER_AUTH_CONDITION
       self.max_rows_limit = DEFAULT_MAX_ROWS_LIMIT
+      self.csv_delimiter = DEFAULT_CSV_DELIMITER
     end
 
   end

@@ -17,7 +17,7 @@
     .input-field
       = f.text_area :raw_query, class: 'editor-style z-depth-1'
   .row
-    .col.s10
+    .col.s9
       .input-field
         .switch
           label
@@ -25,7 +25,7 @@
             = f.check_box :private
             span.lever style='float: left;'
             i style="margin-top: -20px; float: left" class="small mdi-action-lock-outline tooltipped" data-position="right" data-delay="50" data-tooltip="Only users that same role as you can see the clip"
-    .col.s2.right-align
+    .col.s3.right-align
       .input-field
         button class="btn waves-effect waves-light blue darken-3" type="submit" name="action"
           | Save & Refresh

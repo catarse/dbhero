@@ -31,9 +31,9 @@ module Dbhero
     end
 
     def query_result
-      Dataclip.transaction do
+      DataclipRead.transaction do
         begin
-          @q_result ||= ActiveRecord::Base.connection.select_all(self.raw_query)
+          @q_result ||= DataclipRead.connection.select_all(self.raw_query)
         rescue => e
           self.errors.add(:base, e.message)
         end

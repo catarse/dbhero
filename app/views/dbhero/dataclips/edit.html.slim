@@ -1,14 +1,15 @@
-.container
-  == render 'form'
-- if @dataclip.valid? && @dataclip.q_result
-  .section
-    .row.fetch-remote-clip-table data-path=dataclip_path(@dataclip)
-      .col.s12.center-align
-        .preloader-wrapper.big.active
-          .spinner-layer.spinner-blue-only
-            .circle-clipper.left
-              .circle
-            .gap-patch
-              .circle
-            .circle-clipper.right
-              .circle
+.row
+  .col.s12.center-align
+    == render 'form'
+  - if @dataclip.valid? && @dataclip.q_result
+    .section
+      .row.fetch-remote-clip-table data-path=dataclip_path(@dataclip)
+        .col.s12.center-align
+          .preloader-wrapper.big.active
+            .spinner-layer.spinner-blue-only
+              .circle-clipper.left
+                .circle
+              .gap-patch
+                .circle
+              .circle-clipper.right
+                .circle

@@ -3,12 +3,18 @@ require 'csv'
 module Dbhero
   class Dataclip < ActiveRecord::Base
     before_create :set_token
+    after_save :refresh_cache
 
     scope :ordered, -> { order(updated_at: :desc) }
     scope :search, ->(term) { where(arel_table[:description].matches("%#{term}%")) }
 
     validates :description, :raw_query, presence: true
     attr_reader :q_result
+
+    def refresh_cache
+      Rails.cache.delete("dataclip_#{self.token}")
+    end
+
 
     def set_token
       self.token = SecureRandom.uuid unless self.token
@@ -30,10 +36,16 @@ module Dbhero
       @total_rows ||= @q_result.rows.length
     end
 
+    def cached?
+      @cached ||= Rails.cache.fetch("dataclip_#{self.token}").present?
+    end
+
     def query_result
       DataclipRead.transaction do
         begin
-          @q_result ||= DataclipRead.connection.select_all(self.raw_query)
+          @q_result ||= Rails.cache.fetch("dataclip_#{self.token}") do
+            DataclipRead.connection.select_all(self.raw_query)
+          end
         rescue => e
           self.errors.add(:base, e.message)
         end

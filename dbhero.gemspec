@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 $:.push File.expand_path("../lib", __FILE__)
 
 # Maintain your gem's version:
@@ -21,7 +22,7 @@ Gem::Specification.new do |s|
   s.add_dependency "responders"
   s.add_dependency "sass-rails"
   s.add_dependency "slim-rails"
-  s.add_dependency "google_drive"
+  s.add_dependency "google_drive", "~> 1.0.4"
   s.add_dependency "has_scope"
 
   s.add_development_dependency "pg"

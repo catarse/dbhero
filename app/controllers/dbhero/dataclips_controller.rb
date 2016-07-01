@@ -1,7 +1,6 @@
 require_dependency "dbhero/application_controller"
 require_dependency "responders"
 require_dependency "has_scope"
-require_dependency "google/api_client"
 require_dependency "google_drive"
 
 module Dbhero

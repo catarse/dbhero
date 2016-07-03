@@ -43,7 +43,7 @@ module Dbhero
     def query_result
       DataclipRead.transaction do
         begin
-          @q_result ||= Rails.cache.fetch("dataclip_#{self.token}") do
+          @q_result ||= Rails.cache.fetch("dataclip_#{self.token}", expires_in: (::Dbhero.cached_query_exp||10.minutes)) do
             DataclipRead.connection.select_all(self.raw_query)
           end
         rescue => e

@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    dbhero (1.1.11)
+    dbhero (1.1.12)
       google_drive (~> 1.0.4)
       has_scope
       rails (>= 4.1)
@@ -234,4 +234,4 @@ DEPENDENCIES
   shoulda
 
 BUNDLED WITH
-   1.10.6
+   1.12.5

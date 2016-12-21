@@ -12,7 +12,7 @@ RSpec.shared_examples "user not authenticated" do
   it "should raise forbidden error" do
     expect {
       send(method_name, *options)
-    }.to raise_error(ActionController::RoutingError, 'Forbidden')
+    }.to redirect_to '/users/sign_in'
   end
 end
 
@@ -68,7 +68,7 @@ RSpec.shared_examples "user authenticated don't match for custom role" do
   it "should raise forbidden error" do
     expect {
       send(method_name, *options)
-    }.to raise_error(ActionController::RoutingError, 'Forbidden')
+    }.to redirect_to '/users/sign_in'
   end
 end
 

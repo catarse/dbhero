@@ -7,8 +7,10 @@ module Dbhero
 
     scope :ordered, -> { order(updated_at: :desc) }
     scope :search, ->(term) { where(arel_table[:description].matches("%#{term}%")) }
-
-    validates :description, :raw_query, presence: true
+    
+    validates_uniqueness_of :description
+    validates_presence_of :description, :raw_query
+    
     attr_reader :q_result
 
     def refresh_cache

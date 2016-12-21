@@ -28,6 +28,7 @@ $(function(){
         this.startAce();
 
         $('.ace_editor').css({'padding':'0'});
+        $('.ace_text_input').attr('required','true');
       } catch(e) {
         console.log(e);
         this.textarea.css('display', 'block');

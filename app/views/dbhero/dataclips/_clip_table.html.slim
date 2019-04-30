@@ -1,5 +1,5 @@
 - show_public_link = defined?(show_public_link) ? show_public_link : false
-- if Dbhero.max_rows_limit >=@dataclip.q_result.rows.size
+- if Dbhero.max_rows_limit >= @dataclip.q_result.rows.size
   .section
     .row
       .col.s6.style-text-field
@@ -7,7 +7,7 @@
           .input-field
             i.tiny.mdi-social-share.prefix
             input#icon_prefix.validate type="text" value=dataclip_url(@dataclip)
-            label for="icon_prefix" 
+            label for="icon_prefix"
               strong PUBLIC URL
         - else
           p style="margin-top: 40px; margin-bottom: 0;"
@@ -15,13 +15,13 @@
             strong= @dataclip.total_rows
       .col.s6.right-align style="margin-top: 25px;"
         a class='dropdown-button btn' href='#' data-activates='export-drop' Export
-  
+
         ul id='export-drop' class='dropdown-content'
           li
             = link_to 'csv', dataclip_path(@dataclip, format: 'csv')
           li
             = link_to 'google drive', dataclip_path(@dataclip, export_gdrive: true)
-  
+
       .col.s12 style="overflow: auto;"
         table#clip_table.cell-border.striped data-page-length='300'
           thead.grey.lighten-2

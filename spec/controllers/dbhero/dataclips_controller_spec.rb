@@ -19,7 +19,7 @@ end
 RSpec.shared_examples "user authenticated" do
   let(:method_name) { :get }
   let(:options) { nil }
-  let(:expect_method) { :be_success }
+  let(:expect_method) { :be_successful }
 
   before do
     current_user = double()
@@ -30,13 +30,15 @@ RSpec.shared_examples "user authenticated" do
     send(method_name, *options)
   end
 
-  it("response should be success") { expect(response).to send(expect_method) }
+  it("response should be success") {
+    expect(response).to send(expect_method)
+  }
 end
 
 RSpec.shared_examples "user authenticated match for custom role" do
   let(:method_name) { :get }
   let(:options) { nil }
-  let(:expect_method) { :be_success }
+  let(:expect_method) { :be_successful }
 
   before do
     current_user = double()
@@ -75,11 +77,12 @@ end
 RSpec.shared_examples "disabled auth" do
   let(:method_name) { :get }
   let(:options) { nil }
-  let(:expect_method) { :be_success }
+  let(:expect_method) { :be_successful }
 
   before do
     allow(Dbhero).to receive(:authenticate).and_return(false)
     allow(controller).to receive(:_current_user).and_return(nil)
+
     send(method_name, *options)
   end
 
@@ -145,12 +148,12 @@ RSpec.describe Dbhero::DataclipsController, type: :controller do
     describe "with enabled auth" do
       it_should_behave_like "user not authenticated" do
         let(:method_name) { :post }
-        let(:options) { [:create, { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
+        let(:options) { [:create, params: { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
       end
 
       it_should_behave_like "user authenticated" do
         let(:method_name) { :post }
-        let(:options) { [:create, { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
+        let(:options) { [:create, params: { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
         let(:expect_method) { :be_redirect }
 
         it { expect(Dbhero::Dataclip.find_by(description: 'foo bar')).not_to be_nil }
@@ -158,7 +161,7 @@ RSpec.describe Dbhero::DataclipsController, type: :controller do
 
       it_should_behave_like "user authenticated match for custom role" do
         let(:method_name) { :post }
-        let(:options) { [:create, { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
+        let(:options) { [:create, params: { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
         let(:expect_method) { :be_redirect }
 
         it "find dataclip" do
@@ -172,14 +175,14 @@ RSpec.describe Dbhero::DataclipsController, type: :controller do
 
       it_should_behave_like "user authenticated don't match for custom role" do
         let(:method_name) { :post }
-        let(:options) { [:create, { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
+        let(:options) { [:create, params: { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
       end
     end
 
     describe "with disabled auth" do
       it_should_behave_like "disabled auth" do
         let(:method_name) { :post }
-        let(:options) { [:create, { dataclip: { description: "foo bar disabled", raw_query: "select 'foo' as bar" } }] }
+        let(:options) { [:create, params: { dataclip: { description: "foo bar disabled", raw_query: "select 'foo' as bar" } }] }
         let(:expect_method) { :be_redirect }
 
         it "find dataclip" do
@@ -198,29 +201,29 @@ RSpec.describe Dbhero::DataclipsController, type: :controller do
     describe "with enabled auth" do
       it_should_behave_like "user not authenticated" do
         let(:dataclip) { create(:dataclip) }
-        let(:options) { [:edit, { id: dataclip.token}] }
+        let(:options) { [:edit, params: { id: dataclip.token}] }
       end
 
       it_should_behave_like "user authenticated" do
         let(:dataclip) { create(:dataclip) }
-        let(:options) { [:edit, { id: dataclip.token}] }
+        let(:options) { [:edit, params: { id: dataclip.token}] }
       end
 
       it_should_behave_like "user authenticated match for custom role" do
         let(:dataclip) { create(:dataclip) }
-        let(:options) { [:edit, { id: dataclip.token}] }
+        let(:options) { [:edit, params: { id: dataclip.token}] }
       end
 
       it_should_behave_like "user authenticated don't match for custom role" do
         let(:dataclip) { create(:dataclip) }
-        let(:options) { [:edit, { id: dataclip.token}] }
+        let(:options) { [:edit, params: { id: dataclip.token}] }
       end
     end
 
     describe "with disabled auth" do
       it_should_behave_like "disabled auth" do
         let(:dataclip) { create(:dataclip) }
-        let(:options) { [:edit, { id: dataclip.token}] }
+        let(:options) { [:edit, params: { id: dataclip.token}] }
       end
     end
   end
@@ -229,13 +232,13 @@ RSpec.describe Dbhero::DataclipsController, type: :controller do
     describe "with enabled auth" do
       it_should_behave_like "user not authenticated" do
         let(:method_name) { :post }
-        let(:options) { [:create, { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
+        let(:options) { [:create, params: { dataclip: { description: "foo bar", raw_query: "select 'foo' as bar" } }] }
       end
 
       it_should_behave_like "user authenticated" do
         let(:method_name) { :put }
         let(:dataclip) { create(:dataclip, {description: "foo bar", raw_query: "select 'foo' as bar"}) }
-        let(:options) { [:update, id: dataclip.token, dataclip: { description: "updated" } ] }
+        let(:options) { [:update, params: {id: dataclip.token, dataclip: { description: "updated" } }] }
         let(:expect_method) { :be_redirect }
 
         it "find dataclip" do
@@ -249,7 +252,7 @@ RSpec.describe Dbhero::DataclipsController, type: :controller do
       it_should_behave_like "user authenticated match for custom role" do
         let(:method_name) { :put }
         let(:dataclip) { create(:dataclip, {description: "foo bar", raw_query: "select 'foo' as bar"}) }
-        let(:options) { [:update, id: dataclip.token, dataclip: { description: "updated" }] }
+        let(:options) { [:update, params: {id: dataclip.token, dataclip: { description: "updated" }}] }
         let(:expect_method) { :be_redirect }
 
         it "find dataclip" do
@@ -263,7 +266,7 @@ RSpec.describe Dbhero::DataclipsController, type: :controller do
       it_should_behave_like "user authenticated don't match for custom role" do
         let(:method_name) { :put }
         let(:dataclip) { create(:dataclip, {description: "foo bar", raw_query: "select 'foo' as bar"}) }
-        let(:options) { [:update, id: dataclip.token, dataclip: { description: "updated" }] }
+        let(:options) { [:update, params: {id: dataclip.token, dataclip: { description: "updated" }}] }
         let(:expect_method) { :be_redirect }
 
         it "not update dataclip" do
@@ -278,7 +281,7 @@ RSpec.describe Dbhero::DataclipsController, type: :controller do
       it_should_behave_like "disabled auth" do
         let(:method_name) { :put }
         let(:dataclip) { create(:dataclip, {description: "foo bar", raw_query: "select 'foo' as bar"}) }
-        let(:options) { [:update, id: dataclip.token, dataclip: { description: "updated" }] }
+        let(:options) { [:update, params: {id: dataclip.token, dataclip: { description: "updated" }}] }
         let(:expect_method) { :be_redirect }
 
         it "find dataclip" do

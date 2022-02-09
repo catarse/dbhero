@@ -1,3 +1,4 @@
+require 'active_support/all'
 module Dbhero
   module Configuration
     VALID_CONFIG_KEYS    = [:authenticate, :current_user_method, :custom_user_auth_condition, :csv_delimiter,

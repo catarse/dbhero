@@ -1,10 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe Dbhero::Dataclip, type: :model do
-  context "Validations" do
-    it{ is_expected.to validate_presence_of(:description) }
-    it{ is_expected.to validate_presence_of(:raw_query) }
-  end
 
   context "before create" do
     describe ".set_token" do

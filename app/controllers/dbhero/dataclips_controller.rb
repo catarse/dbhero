@@ -1,7 +1,6 @@
 require_dependency "dbhero/application_controller"
 require_dependency "responders"
 require_dependency "has_scope"
-require_dependency "google_drive"
 
 module Dbhero
   class DataclipsController < ApplicationController
@@ -79,6 +78,8 @@ module Dbhero
       end
 
       def google_client
+        require_dependency "google_drive"
+
         @g_client ||= Dbhero::GdriveExporter.new(redirect_uri: drive_dataclips_url)
       end
   end
